@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 from flask_cors import CORS
+import traceback # para imprimir erros no terminal (DEBUG sem saber o que esta errado? Vibe coding dele tbm n é assim jovem!!!)
 
-# Sua chave de API do Gemini
-GOOGLE_API_KEY = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDFBEcvAmLCXfC9lICDCkD2FVzICVu0npw"
+# Apenas a chave em si, não o endpoint inteiro
+GOOGLE_API_KEY = "AIzaSyDFBEcvAmLCXfC9lICDCkD2FVzICVu0npw"
 genai.configure(api_key=GOOGLE_API_KEY)
+
+# Use o modelo que está disponível na sua conta (ex: gemini-pro)
+# Já agora, o jovem tem certeza de que esse modelo está disponivel na tua conta?
 model = genai.GenerativeModel('gemini-pro')
 
 # Informações da sua bio
@@ -44,11 +48,12 @@ def fazer_pergunta():
 
     prompt = f"Com base nas seguintes informações sobre Salvador: '{bio}', responda à seguinte pergunta: '{pergunta}'"
     try:
-        response = model.generate_content(prompt)
+        response = model.generate_content([prompt])  # Colocar o prompt como lista de mensagens
         resposta_texto = response.text
         return jsonify({'resposta': resposta_texto})
     except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+    print(traceback.format_exc())  # Mostra erro completo no terminal
+    return jsonify({'erro': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
