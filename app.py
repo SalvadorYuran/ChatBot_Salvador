@@ -3,7 +3,7 @@ import google.generativeai as genai
 from flask_cors import CORS
 
 # Sua chave de API do Gemini
-GOOGLE_API_KEY = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY"
+GOOGLE_API_KEY = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDFBEcvAmLCXfC9lICDCkD2FVzICVu0npw"
 genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
