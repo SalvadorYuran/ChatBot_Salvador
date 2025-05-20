@@ -9,7 +9,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 # Use o modelo que está disponível na sua conta (ex: gemini-pro)
 # Já agora, o jovem tem certeza de que esse modelo está disponivel na tua conta?
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('models/gemini-1.5-flash')
 
 # Informações da sua bio
 bio = """
