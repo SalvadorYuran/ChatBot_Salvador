@@ -52,8 +52,8 @@ def fazer_pergunta():
         resposta_texto = response.text
         return jsonify({'resposta': resposta_texto})
     except Exception as e:
-    print(traceback.format_exc())  # Mostra erro completo no terminal
-    return jsonify({'erro': str(e)}), 500
+        print(traceback.format_exc())  # Mostra erro completo no terminal
+        return jsonify({'erro': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
